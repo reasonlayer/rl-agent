@@ -1,0 +1,41 @@
+{
+  "display_information": {
+    "name": "NanoClaw",
+    "description": "Personal Claude assistant"
+  },
+  "features": {
+    "bot_user": {
+      "display_name": "NanoClaw",
+      "always_online": true
+    }
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": [
+        "chat:write",
+        "channels:history",
+        "groups:history",
+        "im:history",
+        "im:write",
+        "channels:read",
+        "groups:read",
+        "users:read"
+      ]
+    }
+  },
+  "settings": {
+    "event_subscriptions": {
+      "bot_events": [
+        "message.channels",
+        "message.groups",
+        "message.im"
+      ]
+    },
+    "interactivity": {
+      "is_enabled": false
+    },
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": true,
+    "token_rotation_enabled": false
+  }
+}

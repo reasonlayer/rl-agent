@@ -1,0 +1,22 @@
+services:
+  agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    restart: unless-stopped
+    volumes:
+      # Docker socket — agent spawns Claude containers on the host
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Persistent data
+      - ./groups:/app/groups
+      - ./store:/app/store
+      - ./data:/app/data
+      - ./logs:/app/logs
+      # Credentials
+      - ./.env:/app/.env:ro
+      # Mount security allowlists
+      - ${HOME}/.config/nanoclaw:/root/.config/nanoclaw
+    environment:
+      # Host path so Docker volume mounts use real filesystem paths
+      HOST_PROJECT_ROOT: ${PWD}
+      TZ: ${TZ:-UTC}
